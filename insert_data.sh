@@ -23,7 +23,7 @@ do
     #if not found 
     if [[ -z $TEAM1 ]] 
     then 
-      $($PSQL "INSERT INTO teams(name) VALUES('$WINNER')") 
+      echo $($PSQL "INSERT INTO teams(name) VALUES('$WINNER')") 
       #get new id
       TEAM1=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
     fi
@@ -31,13 +31,13 @@ do
     #if not found 
     if [[ -z $TEAM2 ]] 
     then 
-      $($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')") 
+      echo $($PSQL "INSERT INTO teams(name) VALUES('$OPPONENT')") 
       #get new id
       TEAM2=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
     fi
 
     #games table
-    $($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES($YEAR, '$ROUND'
+    echo $($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES($YEAR, '$ROUND'
     ,$TEAM1, $TEAM2, $WINNER_GOALS, $OPPONENT_GOALS)")
 
   fi
